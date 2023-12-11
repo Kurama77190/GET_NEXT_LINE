@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:14:13 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/11 20:46:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/11 20:48:47 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
+# include <string.h>
 
 typedef struct s_list
 {
