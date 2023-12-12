@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:23:59 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/12 02:54:34 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/12 03:07:01 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd);
 	size_t			compteur;
 
 	*inventaire = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &igne, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &ligne, 0) < 0)
 		return (NULL);
 	compteur = 1;
 	ligne = NULL;
