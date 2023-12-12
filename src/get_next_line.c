@@ -6,13 +6,13 @@
 /*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:23:59 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/12 04:28:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/12 05:48:27 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd)
 {
 	static t_list	*inventaire;
 	char			*ligne;
@@ -38,11 +38,11 @@ void	lire_et_inventaire(int fd, t_list **inventaire, int *compteur)
 {
 	char	*buf;
 
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buf == NULL)
-		return ;
 	while (!trouve_newline(*inventaire) && *compteur != 0)
 	{
+		buf = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
+		if (buf == NULL)
+			return ;
 		*compteur = read(fd, buf, BUFFER_SIZE);
 		if ((*inventaire == NULL && compteur == 0) || *compteur == -1)
 		{
@@ -50,14 +50,41 @@ void	lire_et_inventaire(int fd, t_list **inventaire, int *compteur)
 			return ;
 		}
 		buf[*compteur] = '\0';
+		transfert_inventaire(inventaire, buf, *compteur);
+		free(buf);
 	}
 }
 
+/*Ajoute le contenue de mon buffer a la fin de mon inventaire*/
 
+void	transfert_inventaire(t_list **inventaire, char *buf, size_t compteur)
+{
+	int		i;
+	t_list	*last;
+	t_list	*new_node;
 
-
-
-
+	new_node = malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return ;
+	new_node->next = NULL;
+	new_node->content = malloc(sizeof(char *) * (compteur + 1));
+	if (new_node->content == NULL)
+		return ;
+	i = 0;
+	while (buf[i] && i < compteur)
+	{
+		new_node->content[i] = buf[i];
+		i++;
+	}
+	new_node->content[i] = '\0';
+	if (*inventaire == NULL)
+	{
+		*inventaire = new_node;
+		return ;
+	}
+	last = ft_lst_get_last(*inventaire);
+	last->next = new_node;
+}
 
 
 

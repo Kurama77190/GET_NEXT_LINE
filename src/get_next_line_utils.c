@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 03:42:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/12 04:16:02 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/12 05:41:11 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	trouve_newline(t_list *stash)
 /*Return le pointeur du dernier noeux de ma liste.
  [\cette fonction sera ajoutée à ma libft/]*/
 
-t_list	*ft_lst_get_last(t_list *link)
+t_list	*ft_lst_get_last(t_list *link_ptr)
 {
 	t_list	*current;
 
-	current = link;
+	current = link_ptr;
 	while (current && current->next)
 	{
 		current = current->next;
