@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:23:59 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/12 05:48:27 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/12 05:54:47 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ char	*get_next_line(int fd)
 	char			*ligne;
 	size_t			compteur;
 
-	*inventaire = NULL;
+	inventaire = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &ligne, 0) < 0 || fd > 1024)
 		return (NULL);
 	compteur = 1;
 	ligne = NULL;
 	// 1. Lire fd et copier dans la list
-	lire_et_inventaire(fd, &inventaire, &compteur)
+	lire_et_inventaire(fd, &inventaire, &compteur);
 	if (inventaire == NULL)
 		return (NULL);
 	// 2. extraire l'inventaire dans ligne
 	// 3. netoyez l iventaire
-	return (line);
+	return (ligne);
 }
 
 /*utiliser read() pour ajouter les caracteres dans mon inventaire*/
