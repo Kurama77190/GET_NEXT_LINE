@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:23:59 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/12 05:54:47 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:23:02 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,15 @@ char	*get_next_line(int fd)
 	if (inventaire == NULL)
 		return (NULL);
 	// 2. extraire l'inventaire dans ligne
+	extraire_inventaire(inventaire, &ligne);
 	// 3. netoyez l iventaire
+	clean_inventaire(&inventaire);
+	if (ligne[0] == '\0')
+	{
+		free_inventaire(inventaire);
+		free(ligne);
+		return (NULL);
+	}
 	return (ligne);
 }
 
@@ -87,6 +95,65 @@ void	transfert_inventaire(t_list **inventaire, char *buf, size_t compteur)
 }
 
 
+/*extraire la ligne de l inventaire dans ligne et liberer 
+la memoire des noeuds copier*/
+
+void	extraire_inventaire(t_list *inventaire, char **ligne)
+{
+	int	i;
+	int	j;
+
+	if (inventaire == NULL)
+		return ;
+
+	generer_ligne(ligne, inventaire);
+	if (*ligne == NULL)
+		return ;
+	while (inventaire)
+	{
+		i = 0;
+		while (inventaire->content[i])
+		{
+			if (inventaire ->content[i] == '\n')
+			{
+				(*ligne)[j++] = inventaire->content[i];
+				break ;
+			}
+			(*ligne)[j++] = inventaire->content[i++];
+		}
+		inventaire = inventaire->next;
+	}
+	(*ligne)[j] = '\0';
+}
+
+void	clean_inventaire(t_list **inventaire)
+{
+	t_list	*last;
+	t_list	*clean_node;
+	int		i;
+	int		j;
+
+	clean_node = malloc(sizeof(t_list));
+	if (inventaire == NULL || clean_node == NULL)
+		return ;
+	clean_node->next = NULL;
+	last = ft_lst_get_last(*inventaire);
+	i = 0;
+	while (last ->content[i] && last->content[i] != '\n')
+		i++;
+	if (last->content && last->content[i] == '\n')
+		i++;
+	clean_node->content = malloc(sizeof(char) * \
+	((ft_strlen(last->content - i) + 1)));
+	if (clean_node->content == NULL)
+		return ;
+	j = 0;
+	while (last->content[i])
+		clean_node->content[j++] = last->content[i++];
+	clean_node->content[j] = '\0';
+	free_inventaire(*inventaire);
+	*inventaire = clean_node;
+}
 
 
 

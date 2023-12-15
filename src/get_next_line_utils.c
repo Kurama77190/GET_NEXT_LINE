@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 03:42:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/12 05:41:11 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:12:28 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,57 @@ t_list	*ft_lst_get_last(t_list *link_ptr)
 		current = current->next;
 	}
 	return (current);
+}
+
+void	generer_ligne(char **ligne, t_list *inventaire)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	while (inventaire)
+	{
+		i = 0;
+		while (inventaire->content[i])
+		{
+			if (inventaire->content[i] == '\n')
+			{
+				len++;
+				break ;
+			}
+			len++;
+			i++;
+		}
+		inventaire = inventaire->next;
+	}
+	*ligne = malloc(sizeof(char) * (len + 1));
+}
+
+/*free inventaire*/
+
+void	free_inventaire(t_list **inventaire)
+{
+	t_list	*current;
+	t_list	*next;
+
+	current = inventaire;
+	while (current)
+	{
+		free(current->content);
+		next = current->next;
+		free(current);
+		current = next;
+	}
+}
+
+
+/*je dois vraiment t expliquer cette fonction ? xD*/
+int	ft_strlen(const char *str)
+{
+	int	len;
+
+	len = 0;
+	while (*(str++))
+		len++;
+	return (len);
 }
