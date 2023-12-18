@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:14:13 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/15 15:24:47 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:04:41 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ typedef struct s_list
 
 char	*get_next_line(int fd);
 
-int		trouve_newline(t_list *stash);
+int		trouve_newline(t_list *inventaire);
 
 void	lire_et_inventaire(int fd, t_list **inventaire, int *compteur);
 
 t_list	*ft_lst_get_last(t_list *link_ptr);
 
-void	transfert_inventaire(t_list	**inventaire, char *buf, size_t compteur);
+void	transfert_inventaire(t_list	**inventaire, char *buf, int compteur);
 
 void	clean_inventaire(t_list **inventaire);
 
 int		ft_strlen(const char *str);
 
-void	free_inventaire(t_list **inventaire);
+void	free_inventaire(t_list *inventaire);
 
 void	generer_ligne(char **ligne, t_list *inventaire);
 

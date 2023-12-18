@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 03:42:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/15 13:12:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:59:39 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /*trouver le retour a la ligne.
 [\fonction_personaliser_booléenne/]*/
 
-int	trouve_newline(t_list *stash)
+int	trouve_newline(t_list *inventaire)
 {
 	int		i;
 	t_list	*current;
 
 	i = 0;
-	if (stash == NULL)
+	if (inventaire == NULL)
 		return (0);
-	current = ft_lst_get_last(stash);
+	current = ft_lst_get_last(inventaire);
 	while (current->content[i])
 	{
 		if (current->content[i] == '\n')
@@ -74,7 +74,7 @@ void	generer_ligne(char **ligne, t_list *inventaire)
 
 /*free inventaire*/
 
-void	free_inventaire(t_list **inventaire)
+void	free_inventaire(t_list *inventaire)
 {
 	t_list	*current;
 	t_list	*next;

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:23:59 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/15 15:25:24 by sben-tay         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:16:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 {
 	static t_list	*inventaire;
 	char			*ligne;
-	size_t			compteur;
+	int				compteur;
 
 	inventaire = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &ligne, 0) < 0 || fd > 1024)
@@ -48,7 +48,7 @@ void	lire_et_inventaire(int fd, t_list **inventaire, int *compteur)
 
 	while (!trouve_newline(*inventaire) && *compteur != 0)
 	{
-		buf = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
+		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (buf == NULL)
 			return ;
 		*compteur = read(fd, buf, BUFFER_SIZE);
@@ -65,7 +65,7 @@ void	lire_et_inventaire(int fd, t_list **inventaire, int *compteur)
 
 /*Ajoute le contenue de mon buffer a la fin de mon inventaire*/
 
-void	transfert_inventaire(t_list **inventaire, char *buf, size_t compteur)
+void	transfert_inventaire(t_list **inventaire, char *buf, int compteur)
 {
 	int		i;
 	t_list	*last;
@@ -75,7 +75,7 @@ void	transfert_inventaire(t_list **inventaire, char *buf, size_t compteur)
 	if (new_node == NULL)
 		return ;
 	new_node->next = NULL;
-	new_node->content = malloc(sizeof(char *) * (compteur + 1));
+	new_node->content = malloc(sizeof(char) * (compteur + 1));
 	if (new_node->content == NULL)
 		return ;
 	i = 0;
@@ -103,6 +103,7 @@ void	extraire_inventaire(t_list *inventaire, char **ligne)
 	int	i;
 	int	j;
 
+	j = 0;
 	if (inventaire == NULL)
 		return ;
 
@@ -139,7 +140,7 @@ void	clean_inventaire(t_list **inventaire)
 	clean_node->next = NULL;
 	last = ft_lst_get_last(*inventaire);
 	i = 0;
-	while (last ->content[i] && last->content[i] != '\n')
+	while (last->content[i] && last->content[i] != '\n')
 		i++;
 	if (last->content && last->content[i] == '\n')
 		i++;
