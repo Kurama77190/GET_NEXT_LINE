@@ -16,7 +16,7 @@
 
 ###
 
-<h1 align="center">AVANTAGES DES LISTES CHAINÉE STATIC POUR GNL</h1>
+<h1 align="center">AVANTAGES DES LISTES CHAINÉES STATIC POUR GNL</h1>
 
 ###
 
