@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 03:42:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/18 16:59:39 by sben-tay         ###   ########.fr       */
+/*   Created: 2023/12/18 23:05:50 by sben-tay          #+#    #+#             */
+/*   Updated: 2023/12/19 02:31:20 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
-/*trouver le retour a la ligne.
-[\fonction_personaliser_booléenne/]*/
-
-int	trouve_newline(t_list *inventaire)
+/**/
+int	found_newline(t_list *inventaire)
 {
 	int		i;
 	t_list	*current;
 
-	i = 0;
 	if (inventaire == NULL)
 		return (0);
+	i = 0;
 	current = ft_lst_get_last(inventaire);
 	while (current->content[i])
 	{
@@ -33,14 +31,11 @@ int	trouve_newline(t_list *inventaire)
 	return (0);
 }
 
-/*Return le pointeur du dernier noeux de ma liste.
- [\cette fonction sera ajoutée à ma libft/]*/
-
-t_list	*ft_lst_get_last(t_list *link_ptr)
+t_list	*ft_lst_get_last(t_list *inventaire)
 {
 	t_list	*current;
 
-	current = link_ptr;
+	current = inventaire;
 	while (current && current->next)
 	{
 		current = current->next;
@@ -48,7 +43,7 @@ t_list	*ft_lst_get_last(t_list *link_ptr)
 	return (current);
 }
 
-void	generer_ligne(char **ligne, t_list *inventaire)
+void	malloc_ligne(char **ligne, t_list *inventaire)
 {
 	int	i;
 	int	len;
@@ -72,7 +67,17 @@ void	generer_ligne(char **ligne, t_list *inventaire)
 	*ligne = malloc(sizeof(char) * (len + 1));
 }
 
-/*free inventaire*/
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
 void	free_inventaire(t_list *inventaire)
 {
@@ -87,16 +92,4 @@ void	free_inventaire(t_list *inventaire)
 		free(current);
 		current = next;
 	}
-}
-
-
-/*je dois vraiment t expliquer cette fonction ? xD*/
-int	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (*(str++))
-		len++;
-	return (len);
 }

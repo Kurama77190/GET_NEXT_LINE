@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 20:14:13 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/18 17:04:41 by sben-tay         ###   ########.fr       */
+/*   Created: 2023/12/18 23:05:42 by sben-tay          #+#    #+#             */
+/*   Updated: 2023/12/19 02:33:03 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define GET_NEXT_LINE_H
 
 # include <stdio.h>
-# include <unistd.h>
-# include <string.h>
 # include <stdlib.h>
 
 # include <sys/types.h>
 # include <sys/uio.h>
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -29,26 +28,26 @@ typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
-}				t_list;
+}	t_list;
 
 char	*get_next_line(int fd);
 
-int		trouve_newline(t_list *inventaire);
+int		found_newline(t_list *inventaire);
 
-void	lire_et_inventaire(int fd, t_list **inventaire, int *compteur);
+t_list	*ft_lst_get_last(t_list *inventaire);
 
-t_list	*ft_lst_get_last(t_list *link_ptr);
+void	lire_et_addlist(int fd, t_list **inventaire, int *compteur);
 
-void	transfert_inventaire(t_list	**inventaire, char *buf, int compteur);
+void	ajouter_a_inventaire(t_list **inventaire, char *buf, int compteur);
 
-void	clean_inventaire(t_list **inventaire);
+void	extraire_ligne(t_list *inventaire, char **ligne);
 
-int		ft_strlen(const char *str);
+void	malloc_ligne(char **ligne, t_list *inventaire);
+
+void	clean_inventaire(t_list	**inventaire);
+
+int		ft_strlen(char *str);
 
 void	free_inventaire(t_list *inventaire);
-
-void	generer_ligne(char **ligne, t_list *inventaire);
-
-void	extraire_inventaire(t_list *inventaire, char **ligne);
 
 #endif
