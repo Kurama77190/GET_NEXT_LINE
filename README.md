@@ -52,12 +52,14 @@ Pour utiliser GNL, incluez la fonction `get_next_line` dans votre projet C. Voic
 ```c
 #include "get_next_line.h"
 
-int main(void) {
+int main(void)
+{
     int fd;
     char *line;
 
     fd = open("../src/simple.txt", O_RDONLY);
-    while (1) {
+    while (1)
+    {
         line = get_next_line(fd);
         if (line == NULL)
             break;
