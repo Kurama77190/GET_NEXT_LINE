@@ -57,8 +57,8 @@ int main(void)
     int fd;
     char *line;
 
-    fd = open("../src/simple.txt", O_RDONLY);
-    while (1)
+    fd = open("../src/simple.txt", O_RDONLY); // Ouvrir votre .txt en lecture seul
+    while (1) // faite une boucle infini pour print chaque ligne de votre .txt
     {
         line = get_next_line(fd);
         if (line == NULL)
@@ -66,7 +66,7 @@ int main(void)
         printf("%s", line);
         free(line);
     }
-    close(fd);
+    close(fd); // fermer la lecture de votre .txt
     return 0;
 }
 ```
