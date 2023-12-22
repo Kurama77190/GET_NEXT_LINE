@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                           :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.paris.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 23:05:50 by sben-tay          #+#    #+#             */
-/*   Updated: 2023/12/19 02:31:20 by sben-tay         ###   ########.fr       */
+/*   Created: 2023/12/21 23:41:38 by sben-tay          #+#    #+#             */
+/*   Updated: 2023/12/22 02:50:15 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
-
-/* trouver le retour a la ligne */
+#include "../include/get_next_line_bonus.h"
 
 int	found_newline(t_list *inventaire)
 {
@@ -32,9 +30,6 @@ int	found_newline(t_list *inventaire)
 	return (0);
 }
 
-/* Retourne le pointeur du dernier noeuds de la liste 
- * (je l'ajouterais dans ma libft et je te le conseil !) */
-
 t_list	*ft_lst_get_last(t_list *inventaire)
 {
 	t_list	*current;
@@ -46,8 +41,6 @@ t_list	*ft_lst_get_last(t_list *inventaire)
 	}
 	return (current);
 }
-
-/* fonction d allocation simple */
 
 void	malloc_ligne(char **ligne, t_list *inventaire)
 {
@@ -73,8 +66,6 @@ void	malloc_ligne(char **ligne, t_list *inventaire)
 	*ligne = malloc(sizeof(char) * (len + 1));
 }
 
-/* Je dois vraiment t'expliquer cette fonction ? :) */
-
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -86,8 +77,6 @@ int	ft_strlen(char *str)
 	}
 	return (i);
 }
-
-/* free tous les noeuds de ma t_list */
 
 void	free_inventaire(t_list *inventaire)
 {
